@@ -6,7 +6,7 @@
 /*   By: mdarify <mdarify@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 21:07:24 by mmounaji          #+#    #+#             */
-/*   Updated: 2023/03/16 11:27:38 by mdarify          ###   ########.fr       */
+/*   Updated: 2023/03/16 16:30:27 by mdarify          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	free_cmd(t_cmd_node **cmd)
 	}
 }
 
-void	minishell(char **envv)
+void	minishell(char **envp)
 {
 	char		*line;
 	t_list		*element;
@@ -67,7 +67,7 @@ void	minishell(char **envv)
 	t_command	*cmd;
 
 	line = NULL;
-	env = ft_init_env(envv);
+	env = ft_init_env(envp);
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, &sig_handler);
 	remove_ctlc();

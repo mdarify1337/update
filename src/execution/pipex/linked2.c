@@ -6,7 +6,7 @@
 /*   By: mdarify <mdarify@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 16:24:43 by mdarify           #+#    #+#             */
-/*   Updated: 2023/03/16 11:26:04 by mdarify          ###   ########.fr       */
+/*   Updated: 2023/03/16 16:37:40 by mdarify          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,15 +73,15 @@ void	fwait_command(t_helper *minishell)
 		waitpid(minishell->pid[l], &minishell->status, 0);
 		l++;
 	}
-	if (l == SIGINT)
+	if (minishell->status == SIGINT)
 		g_fcode.exit_status = 130;
-	else if (l == SIGQUIT)
+	else if (minishell->status == SIGQUIT)
 	{
 		printf("Quit: 3\n");
 		g_fcode.exit_status = 131;
 	}
-	else if (WIFEXITED(l))
-		g_fcode.exit_status = WEXITSTATUS(l);
+	else
+		g_fcode.exit_status = WEXITSTATUS(minishell->status);
 	free(minishell->pid);
 }
 

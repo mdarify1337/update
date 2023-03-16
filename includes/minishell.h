@@ -6,7 +6,7 @@
 /*   By: mdarify <mdarify@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 19:10:22 by mmounaji          #+#    #+#             */
-/*   Updated: 2023/03/16 11:20:48 by mdarify          ###   ########.fr       */
+/*   Updated: 2023/03/16 18:14:48 by mdarify          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef enum e_state
 typedef enum e_token
 {
 	WORD,
+	EMPTY,
+	GEN_WS,
 	WHITE_SPACE = ' ',
 	QOUTE = '\'',
 	DOUBLE_QUOTE = '\"',
@@ -116,7 +118,7 @@ typedef struct s_main
 }						t_main;
 
 t_main					g_fcode;
-void					minishell(char **env);
+void					minishell(char **envp);
 t_list					*init_tokens(t_list *list);
 int						get_word(t_list *tokens, char *str, enum e_state state);
 t_element				*ft_lstnew(char *content, int len, enum e_token type,
@@ -155,12 +157,13 @@ t_env					*ft_init_env(char **env);
 t_env_node				*env_new(char *env);
 void					add_env(t_env **env_list, t_env_node *node);
 int						delete_node_by_key(t_env *head, char *key);
-void					insert_to_tail(t_env_node **tail, t_env_node *node);
+void					insert_to_tail(t_env **env, t_env_node *new);
 t_env_node				*search_by_key(t_env_node *head, char *key);
 int						unset_cmd(t_env *env, char *key);
 t_command				*parse_command(t_list **list);
+char	*ft_strjoin_free2(char *s1, char *s2);
 void					export_cmd(t_env *env, char *arg);
-char					*ft_realloc(char *old, char *new);
+char	*ft_realloc(char *old, char *new, t_element *next);
 void					ft_cmdadd_back(t_command **list, t_cmd_node *new);
 void					update_redirection(t_cmd_node *cmd, t_element *elm);
 int						is_pipe(t_element *elm);
@@ -185,6 +188,9 @@ void					exec_export(t_cmd_node *cmd, t_env **env);
 void					exec_unset(t_cmd_node *cmd, t_env **env);
 char					*ft_strndup(char *s1, int n);
 // MINISHELL: ------->execution
+char					*ft_remove_char(char	*str, char c);
+void					export_with_join(t_env **env, char *arg, int i, t_env_node *node_);
+char					*ft_strcat(char *s1, char *s2);
 char					*ft_strjoin2(char *s1, char *s2);
 int						find_path(t_cmd_node **cmd, t_env *env);
 int						finitial_variables_commands(t_cmd_node **command,

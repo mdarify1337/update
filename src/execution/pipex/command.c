@@ -6,7 +6,7 @@
 /*   By: mdarify <mdarify@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 13:27:37 by mdarify           #+#    #+#             */
-/*   Updated: 2023/03/16 11:24:37 by mdarify          ###   ########.fr       */
+/*   Updated: 2023/03/16 16:18:21 by mdarify          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	fcheck_valid_fd(t_cmd_node *fd, t_helper *duplicat)
 		g_fcode.exit_status = 1;
 		exit(g_fcode.exit_status);
 	}
-	signal(SIGQUIT, SIG_IGN);
+	signal(SIGQUIT, SIG_DFL);
 	signal(SIGINT, &sig_handler);
 	if (fd->io_out > 2)
 		dup2(fd->io_out, 1);

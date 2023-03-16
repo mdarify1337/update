@@ -6,7 +6,7 @@
 /*   By: mdarify <mdarify@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 11:38:23 by mmounaji          #+#    #+#             */
-/*   Updated: 2023/03/15 16:57:22 by mdarify          ###   ########.fr       */
+/*   Updated: 2023/03/16 16:55:46 by mdarify          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,21 @@ t_env_node	*search_by_key(t_env_node *head, char *key)
 	return (NULL);
 }
 
-void	insert_to_tail(t_env_node **tail, t_env_node *node)
+void	insert_to_tail(t_env **env, t_env_node *new)
 {
-	if (!*tail || !node)
-		return ;
-	(*tail)->next = node;
-	node->previous = *tail;
-	*tail = node;
+	t_env_node	*tmp;
+
+	tmp = (*env)->first;
+	if (!(*env)->first)
+	{
+		(*env)->first = new;
+		(*env)->first->previous = NULL;
+	}	
+	else
+	{
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new;
+		new->previous = tmp;
+	}
 }

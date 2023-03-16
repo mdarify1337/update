@@ -1,7 +1,7 @@
 NAME		= minishell
 	
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror #-g3 -fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror -fsanitize=address
 RM		= rm -rf
 
 UTILS		= $(addprefix utils/, ft_split linked_list utils utils1 ft_itoa helper)
@@ -12,7 +12,7 @@ PARSER		= $(addprefix parser/, parser parser_utils here_doc)
 SYNTAX		= $(addprefix check_syntax/, check_quotes syntax_errors)
 ENV			= $(addprefix env/, env_operations env_utils env)
 MPIPE		= $(addprefix execution/pipex/, command execution  linked pipe command2 execution2 linked2 linked_execution)
-BUILTINS	= $(addprefix execution/builtins/, cd_cmd echo_cmd env_cmd exit_cmd export_cmd pwd_cmd unset_cmd)
+BUILTINS	= $(addprefix execution/builtins/, cd_cmd echo_cmd env_cmd exit_cmd export_cmd pwd_cmd unset_cmd export_util)
 FILES		= $(addprefix src/, signals main minishell  $(UTILS) $(EXEC) $(CLEANER) $(SYNTAX) $(ENV) $(LEXER) $(PARSER) $(BUILTINS) $(MPIPE) $(EXPAND))
 OBJ			= $(FILES:=.o)
 

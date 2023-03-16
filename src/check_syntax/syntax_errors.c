@@ -6,7 +6,7 @@
 /*   By: mdarify <mdarify@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 12:55:04 by mmounaji          #+#    #+#             */
-/*   Updated: 2023/03/16 11:48:46 by mdarify          ###   ########.fr       */
+/*   Updated: 2023/03/16 16:46:20 by mdarify          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	is_redirection(t_element *elm)
 
 t_element	*skip_space(t_element *elm, int flag)
 {
-	while (elm != NULL && elm->type == WHITE_SPACE)
+	while (elm != NULL && (elm->type == WHITE_SPACE || elm->type == GEN_WS))
 	{
 		if (flag == 1)
 			elm = elm->next;
